@@ -4,6 +4,8 @@
 #### Data provided for free by [IEX](https://iextrading.com/developer). View [IEX's terms of use](https://iextrading.com/api-exhibit-a/) 
 ##### (no api key for api 1.0)
 
+![iex Charts](img/iexCharts1.png)
+
 ## Instructions:
 
 1. Download or clone this repository

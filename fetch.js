@@ -8,8 +8,8 @@ function fetchChart(meta){
 
 function getQuote(meta){
   let quote = meta.box.getElementsByClassName('quote')[0]
-    quote.childNodes.forEach(c => {
-    quote.removeChild(c)
+  quote.childNodes.forEach(c => {
+    quote.parentNode.removeChild(c)
   })
   meta.makeUrl(true)
   fetch(meta.url).then(resp => resp.json())

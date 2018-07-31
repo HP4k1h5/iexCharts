@@ -22,10 +22,10 @@ class Meta {
   makeUrl(q){
     let base = 'https://api.iextrading.com/1.0/stock/'
     if (q){
-      this.url = `${base}${this.sec}/quote`
+      this.url = encodeURI(`${base}${this.sec}/quote`)
     }
     else{
-      this.url = `${base}${this.sec}/chart/${this.time}`
+      this.url = encodeURI(`${base}${this.sec}/chart/${this.time}`) 
     }
     return this
   }

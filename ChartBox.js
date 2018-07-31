@@ -60,10 +60,10 @@ function handleReq(val, id){
   }
 
   if (/\$\w+/.test(val)){
-    meta.sec = val.match(/\$(\w+)/)[1]
+    meta.sec = val.match(/\$([\w.]+)/)[1]
   }
   if (/\:\w+/.test(val)){
-    meta.time = val.match(/\:(\w+)/)[1]
+    meta.time = val.match(/\:([\w/\d]+)/)[1]
   }
   if (/#\w+/.test(val)){
     meta.type = val.match(/#(\w+)/)[1]

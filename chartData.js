@@ -3,6 +3,7 @@ function makeCharts(d, meta){
   meta.box.appendChild(prices)
   let vols = makeSvg(d.slice(-1), 'bars', 'vol', meta.box)
   meta.box.appendChild(vols)
+  return meta
 }
 
 function makeSvg(vals, typ, priceVol, div){

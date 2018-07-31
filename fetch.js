@@ -3,17 +3,17 @@ function fetchChart(meta){
     .then(d => treatData(d, meta))
     .then(d => cleanDiv(d, meta.box))
     .then(d => makeCharts(d, meta))
-    .then(d => getQuote(meta))
+    .then(m => getQuote(m))
+    .then(q => treatQuote(q, meta))
 }
 
 function getQuote(meta){
   let quote = meta.box.getElementsByClassName('quote')[0]
-  quote.childNodes.forEach(c => {
-    quote.parentNode.removeChild(c)
-  })
+  while (quote.firstChild){
+    quote.removeChild(quote.firstChild)
+  }
   meta.makeUrl(true)
-  fetch(meta.url).then(resp => resp.json())
-    .then(q => treatQuote(q, meta))
+  return fetch(meta.url).then(resp => resp.json())
 }
 
 function cleanDiv(d, box){
@@ -35,9 +35,9 @@ function treatQuote(q, meta){
     'high': q.high
   }
   let qB = meta.box.getElementsByClassName('quote')
-  let hL = `${meta.low}:${meta.high}`
-  hL = document.createTextNode(hL)
-  qB[0].appendChild(hL)
+  let hL = () => `${meta.low}::${meta.high}`
+  let hLT = document.createTextNode(hL())
+  qB[0].appendChild(hLT)
   Object.keys(vals).forEach(v => {
     let li = document.createElement('li')
     let txt = `${v} :: ${vals[v]}`

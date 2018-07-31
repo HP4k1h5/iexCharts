@@ -1,19 +1,21 @@
 body{
   min-width: 100vw;
   min-height: 100vh;
-  background-color: hsl(340,50%,65%);
+  background-color: #111111;
   color: #dddddd;
 }
 
 main{
   display: flex;
+  flex-wrap: wrap;
 }
 
 div.chartWindow{
   background-color: navy;
   width: 40vw;
   min-height: 50vh;
-  border: solid .5vh black;
+  border-top: 3px solid blueviolet;
+  border-left: 3px solid darkgrey;
 }
 
 div.quote{
@@ -21,7 +23,8 @@ div.quote{
   background-color: grey;
   width: 10vw;
   height: 100%;
-  color: brown;;
+  color: #112233;
+  font-weight: bolder;
 }
 
 svg{
@@ -38,6 +41,17 @@ svg{
   height: 20vh;
 }
 
+ul{
+  position: relative;
+  list-style: none;
+  left: -25px;
+}
+
+li{
+  font-weight: bold;
+  border-bottom: 1px solid;
+  border-right: 1px solid;
+}
 p{
 
 }
@@ -47,4 +61,16 @@ p{
 }
 
 input{
+}
+
+.footer{
+  margin-top: 1vh;
+  bottom: 0px;
+  left: 1vw;
+  border-top: solid blueviolet;
+  border-left: solid grey;
+}
+a{
+  color: green;
+  text-decoration: none;
 }

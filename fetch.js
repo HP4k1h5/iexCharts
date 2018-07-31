@@ -35,7 +35,6 @@ function treatQuote(q, meta){
     'high': q.high
   }
   let qB = meta.box.getElementsByClassName('quote')
-  console.log( meta.low)
   let hL = `${meta.low}:${meta.high}`
   hL = document.createTextNode(hL)
   qB[0].appendChild(hL)

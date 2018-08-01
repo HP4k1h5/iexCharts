@@ -39,6 +39,7 @@ function makeQuoteDiv(){
 
 function makeInput(id){
   let inputField = document.createElement('input')
+  inputField.id = 'input'
   inputField.addEventListener('keypress', e => {
     if (e.key === 'Enter'){
       handleReq(inputField.value, id)

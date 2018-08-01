@@ -9,6 +9,7 @@ class Meta {
     this.box = null
     this.high = null
     this.low = null
+    this.wait = false
   }
 
   setId(){

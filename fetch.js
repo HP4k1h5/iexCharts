@@ -59,7 +59,7 @@ function treatData(data, meta){
     line: ['close', 'volume'],
     bars: ['close', 'volume'],
     OHLC: ['open', 'high', 'low', 'close', 'volume'],
-    hiLo: ['high', 'low', 'volume']
+    hilo: ['high', 'low', 'volume']
   }
   let valArr = valObj[meta.type]
     .map(v => Object.keys(data)

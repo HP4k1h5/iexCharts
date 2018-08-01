@@ -11,7 +11,7 @@ function makeSvg(vals, typ, priceVol, div){
       bars: makeBars,
       line: makeLine,
       OHLC: makeOHLC,
-      hiLo: makeHiLo
+      hilo: makeHiLo
   }
 
   let ns = 'http://www.w3.org/2000/svg'

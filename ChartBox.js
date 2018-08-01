@@ -66,7 +66,7 @@ function handleReq(val, id){
     meta.time = val.match(/\:([\w/\d]+)/)[1]
   }
   if (/#\w+/.test(val)){
-    meta.type = val.match(/#(\w+)/)[1]
+    meta.type = val.match(/#(\w+)/)[1].toLowerCase()
   }
 
   /\bnew\b/.test(val) 

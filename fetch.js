@@ -1,5 +1,5 @@
 function fetchChart(meta){
-  let data = getData(meta.url)
+  let data = getData(meta)
     .then(d => treatData(d, meta))
     .then(d => cleanDiv(d, meta.box))
     .then(d => makeCharts(d, meta))
@@ -61,11 +61,11 @@ function waiting(meta){
   let interval 
   interval = setInterval(wait(), 100)
   function wait(){
-    meta.wait 
+     meta.wait 
       ? document.getElementById('input').value = backForth()
       : window.clearInterval(interval)
   }
-} 
+}
 
 function getQuote(meta){
   let quote = meta.box.getElementsByClassName('quote')[0]
@@ -109,14 +109,23 @@ function treatQuote(q, meta){
 }
 
 function getData(meta){
-  //waiting(meta)
+  waiting(meta)
   return fetch(meta.url)
-    .then(resp => resp.json())
-    .catch(err => console.error('fetch err: ', err))
+    .then(resp => {
+      console.log( resp.ok)
+      return resp.headers.get('content-type').indexOf('application/json') !== -1 && resp.ok
+        ? resp.json() 
+        : '' + resp.statusText
+    })
+    .catch(err =>{ console.error('fetch err: ', err)})
 }
 
 function treatData(data, meta){
-  meta.wait = false
+  if (typeof data === 'string'){
+    console.error( 'treatData err:', data)
+    return 
+  }
+
   let valObj = {
     line: ['close', 'volume'],
     bars: ['close', 'volume'],
@@ -126,7 +135,7 @@ function treatData(data, meta){
   let valArr = valObj[meta.type]
     .map(v => Object.keys(data)
       .map(d => data[d][v])
-      .filter(i => i))
+      .filter(i => i > 0))
   meta.high = Math.max(...valArr[0])
   meta.low = Math.min(...valArr[0])
   valArr = valArr.map(z => zeroVal(z))
@@ -134,5 +143,9 @@ function treatData(data, meta){
     let lo = Math.min(...arr)
     return arr.map(v => v - lo) 
   }
+
+  meta.wait = false
+  document.getElementById('input').setAttribute('class', 'in')
+  document.getElementById('input').value = ''
   return valArr
 }

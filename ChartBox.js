@@ -44,6 +44,7 @@ function makeInput(id){
     if (e.key === 'Enter'){
       handleReq(inputField.value, id)
       inputField.value = ''
+      inputField.autofocus = true
     }
   })
   return inputField

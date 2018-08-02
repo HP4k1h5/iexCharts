@@ -60,12 +60,14 @@ p{
   
 }
 
-input{
-
+input.in{
+  color: black;
+  font-weight: bold;
+  user-select: auto;
+  caret-color: green;
 }
 
 input.waiting {
-  font-size: 16px;
   color: grey;
   user-select: none;
   -moz-user-select: none;

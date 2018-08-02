@@ -52,28 +52,32 @@ li{
   border-bottom: 1px solid;
   border-right: 1px solid;
 }
+
 p{
 
 }
 
 .chartTitle{
-  
+  margin: .5vw;
 }
 
 input.in{
-  color: black;
+  color: green;
   font-weight: bold;
   user-select: auto;
   caret-color: green;
 }
 
-input.waiting {
-  color: grey;
-  user-select: none;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  caret-color: transparent;
+span.waiting{
+  display: inline;
+  color: #555555;
+  border: 1px solid grey;
+}
+
+span.err{
+  display: block;
+  border: #bf120a solid 3px;
+  color: #777777;
 }
 
 .footer{
@@ -83,6 +87,7 @@ input.waiting {
   border-top: solid blueviolet;
   border-left: solid grey;
 }
+
 a{
   color: green;
   text-decoration: none;

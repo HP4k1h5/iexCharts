@@ -19,14 +19,14 @@ function makeBox(meta){
 
 function reBox(meta){
   meta.makeUrl()
-  meta.box.childNodes[0].textContent = `${meta.sec} : ${meta.time}`
+  meta.box.childNodes[0].textContent = `\$${meta.sec} : ${meta.time}`
   fetchChart(meta)
 }
 
 function makeTitle(meta){
   let p = document.createElement('span')
-  p.class = 'chartTitle' 
-  let txt = document.createTextNode(`${meta.sec} : ${meta.time}`)
+  p.setAttribute('class', 'chartTitle')
+  let txt = document.createTextNode(`\$${meta.sec} : ${meta.time}`)
   p.appendChild(txt)
   return p
 }
@@ -40,6 +40,7 @@ function makeQuoteDiv(){
 function makeInput(id){
   let inputField = document.createElement('input')
   inputField.id = 'input'
+  inputField.setAttribute('class', 'in')
   inputField.addEventListener('keypress', e => {
     if (e.key === 'Enter'){
       handleReq(inputField.value, id)
@@ -69,6 +70,9 @@ function handleReq(val, id){
   }
   if (/#\w+/.test(val)){
     meta.type = val.match(/#(\w+)/)[1].toLowerCase()
+  }
+  if (/\!/.test(val)){
+    
   }
 
   /\bnew\b/.test(val) 

@@ -51,6 +51,28 @@ function makeInput(id){
   return inputField
 }
 
+function fetchNews(meta){
+  cleanDiv(null, meta.box)
+  let br = document.createElement('br')
+  let newsDiv = document.createElement('div')
+  newsDiv.setAttribute('class', 'news')
+  newsDiv.id = 'news'
+  meta.box.appendChild(newsDiv)
+  meta.makeUrl('news')
+  fetch(meta.url)
+    .then(j => j.json())
+    .then(d => {
+      let txt = d.reduce((a,n) => 
+        a + n.datetime + ': ' + n.headline
+        + '<br>' + n.summary + ':' 
+        + '<a href=' + n.url + '>' + 'link' + '</a>' 
+        + '<br>' + '•••'
+        ,`NEWS!!<br>`)
+      newsDiv.innerHTML = (txt)
+      console.log( txt)
+    })
+}
+
 function handleReq(val, id){
   let meta = metaArr.find(m => m.id === id)
   meta = /\bnew\b/.test(val)
@@ -72,7 +94,8 @@ function handleReq(val, id){
     meta.type = val.match(/#(\w+)/)[1].toLowerCase()
   }
   if (/\!/.test(val)){
-    
+    fetchNews(meta)
+    return 
   }
 
   /\bnew\b/.test(val) 

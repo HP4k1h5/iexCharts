@@ -24,6 +24,9 @@ function cleanDiv(d, box){
   let wS = box.getElementsByClassName('waiting')
   wS[0] ? wS[0].parentNode.removeChild(wS[0])
     : null
+  let news = box.getElementsByClassName('news')[0]
+  news ? news.parentNode.removeChild(news)
+    : null
   return d
 }
 

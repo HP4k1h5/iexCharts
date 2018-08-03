@@ -53,6 +53,7 @@ function makeInput(id){
 
 function fetchNews(meta){
   cleanDiv(null, meta.box)
+  meta.box.childNodes[0].textContent = `!${meta.sec} : NEWS!!`
   let br = document.createElement('br')
   let newsDiv = document.createElement('div')
   newsDiv.setAttribute('class', 'news')
@@ -63,11 +64,12 @@ function fetchNews(meta){
     .then(j => j.json())
     .then(d => {
       let txt = d.reduce((a,n) => 
-        a + n.datetime + ': ' + n.headline
+        a + n.datetime.slice(0,16) + ': ' 
+        + '<b>' + n.headline + '</b>' 
         + '<br>' + n.summary + ':' 
         + '<a href=' + n.url + '>' + 'link' + '</a>' 
         + '<br>' + '•••'
-        ,`NEWS!!<br>`)
+        , '')
       newsDiv.innerHTML = (txt)
       console.log( txt)
     })

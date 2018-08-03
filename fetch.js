@@ -27,6 +27,10 @@ function cleanDiv(d, box){
   let news = box.getElementsByClassName('news')[0]
   news ? news.parentNode.removeChild(news)
     : null
+  let err = document.getElementsByClassName('err')
+  while (err[0]){
+    err[0].parentNode.removeChild(err[0])
+  }
   return d
 }
 
@@ -35,11 +39,15 @@ function treatQuote(q, meta){
   let vals = {
     'companyName': q.companyName,
     'delayedPrice': q.delayedPrice,
+    'change' : q.change,
+    'changePercent': q.changePercent,
     'open': q.open,
     'close': q.close,
+    'high': q.high,
     'low': q.low,
-    'high': q.high
+    'latestVolume': q.latestVolume
   }
+
   let qB = meta.box.getElementsByClassName('quote')
   let hL = () => `${meta.low}::${meta.high}`
   let hLT = document.createTextNode(hL())
@@ -77,13 +85,7 @@ function treatData(data, meta){
     span.appendChild(txt)
     meta.box.appendChild(span) 
     throw new Error(meta.url, data)
-  }
-  else{
-    let err = document.getElementsByClassName('err')[0]
-    while (err){
-      err.parentNode.removeChild(err)
-    }
-  }
+  } 
 
   let valObj = {
     line: ['close', 'volume'],

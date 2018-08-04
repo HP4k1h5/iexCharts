@@ -70,8 +70,21 @@ function fetchNews(meta){
         + '<a href=' + n.url + '>' + 'link' + '</a>' 
         + '<br>' + '•••'
         , '')
-      newsDiv.innerHTML = (txt)
+      newsDiv.innerHTML = txt
     })
+}
+
+function fetchMovers(){
+  let base = 'https://api.iextrading.com/1.0/stock/market/list/'
+  let queries = ['losers', 'gainer']
+  async function moverCalls(){
+    queries.forEach(q => {
+      return fetch(base + q)
+    .then(j => j.json())
+    })
+    let res = await moverCalls()
+    console.log( res)
+  }
 }
 
 function handleReq(val, id){
@@ -79,7 +92,6 @@ function handleReq(val, id){
   meta = /\bnew\b/.test(val)
     ? new Meta(meta.sec, meta.time, meta.type)
     : meta
-
   if (/\bclose\b/.test(val)){
     meta.deleteMe(meta)
     return

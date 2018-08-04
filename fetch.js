@@ -45,7 +45,17 @@ function treatQuote(q, meta){
     'close': q.close,
     'high': q.high,
     'low': q.low,
-    'latestVolume': q.latestVolume
+    'latestVolume': q.latestVolume,
+    'avgTotalVolume': q.avgTotalVolume,
+    'peRatio': q.peRatio
+  }
+  function color(v, li){
+    if (v >= 0){
+      li.setAttribute('class', 'green')
+    }
+    else {
+      li.setAttribute('class', 'red')
+    }
   }
 
   let qB = meta.box.getElementsByClassName('quote')
@@ -57,6 +67,14 @@ function treatQuote(q, meta){
     let txt = `${v} :: ${vals[v]}`
     let txtNode = document.createTextNode(txt)
     li.appendChild(txtNode)
+    if (v === 'change' 
+      || v === 'changePercent'
+    ){
+      color(vals[v], li)
+    }
+    if (v === 'delayedPrice'){
+      color(vals['change'], li)
+    }
     ul.appendChild(li)
   })
   qB[0].appendChild(ul)

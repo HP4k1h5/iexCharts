@@ -52,6 +52,14 @@ li{
   border-bottom: 1px solid;
   border-right: 1px solid;
 }
+li.green{
+  color: green;
+  font-weight: bold;
+}
+li.red{
+  color: red;
+  font-weight: bolder;
+}
 
 p{
 
@@ -98,5 +106,4 @@ span.err{
 a{
   color: green;
   text-decoration: none;
-
 }

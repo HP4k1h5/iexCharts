@@ -71,7 +71,6 @@ function fetchNews(meta){
         + '<br>' + '•••'
         , '')
       newsDiv.innerHTML = (txt)
-      console.log( txt)
     })
 }
 

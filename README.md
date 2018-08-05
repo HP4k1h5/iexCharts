@@ -19,6 +19,8 @@
 
 `close` - closes the current terminal window
 
+`!` - retrieves news
+
 `$stock` - changes the current security
 
 `:time` - [1d(default), 1m, 3m, 6m, ytd, 1y, 2y, 5y]

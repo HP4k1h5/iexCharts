@@ -50,12 +50,9 @@ function treatQuote(q, meta){
     'peRatio': q.peRatio
   }
   function color(v, li){
-    if (v >= 0){
-      li.setAttribute('class', 'green')
-    }
-    else {
-      li.setAttribute('class', 'red')
-    }
+    v >= 0 
+      ? li.setAttribute('class', 'green')
+      : li.setAttribute('class', 'red')
   }
 
   let qB = meta.box.getElementsByClassName('quote')

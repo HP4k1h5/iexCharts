@@ -33,6 +33,7 @@ class Meta {
 
   deleteMe(meta){
     meta.box.parentNode.removeChild(meta.box)
-    metaArr.splice(meta.id, 1)
+    let ind = metaArr.findIndex(m => m.id === meta.id)
+    metaArr.splice(ind, 1)
   }
 }

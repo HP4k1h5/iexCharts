@@ -74,23 +74,6 @@ function fetchNews(meta){
     })
 }
 
-function fetchMovers(){
-  //let base = 'https://api.iextrading.com/1.0/stock/market/list/'
-  let base = 'https://api.iextrading.com/1.0/stock/'
-  //let queries = ['losers', 'gainer']
-  let queries = ['amzn', 'aapl']
-  function moverCalls(){
-    let promises = queries.map(q => {
-      let promise = new Promise((res, rej) => {
-        return res(fetch(base + q))
-      })
-    })
-    return promises
-  }
-  let promises = moverCalls()
-  Promise.all(promises).then(l => console.log( l))
-}
-
 function handleReq(val, id){
   let meta = metaArr.find(m => m.id === id)
   meta = /\bnew\b/.test(val)

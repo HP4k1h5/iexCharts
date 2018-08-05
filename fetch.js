@@ -92,6 +92,12 @@ function getData(meta){
 }
 
 function treatData(data, meta){
+  let valObj = {
+    line: ['close', 'volume'],
+    bars: ['close', 'volume'],
+    OHLC: ['open', 'high', 'low', 'close', 'volume'],
+    hilo: ['high', 'low', 'volume']
+  }
   cleanDiv(null, meta.box)
   if (typeof data === 'string'){
     let span = document.createElement('span')
@@ -102,12 +108,16 @@ function treatData(data, meta){
     throw new Error(meta.url, data)
   } 
 
-  let valObj = {
-    line: ['close', 'volume'],
-    bars: ['close', 'volume'],
-    OHLC: ['open', 'high', 'low', 'close', 'volume'],
-    hilo: ['high', 'low', 'volume']
-  }
+  if (! valObj[meta.type]){
+    let span = document.createElement('span')
+    span.setAttribute('class', 'err') 
+    let txt = document.createTextNode('invalid chart type: ' + meta.type
+      + ':: VALID types: #bars #line #hilo'
+    )
+    span.appendChild(txt)
+    meta.box.appendChild(span) 
+    throw new Error('invalid chart type', meta.type)
+  } 
   let valArr = valObj[meta.type]
     .map(v => Object.keys(data)
       .map(d => data[d][v])

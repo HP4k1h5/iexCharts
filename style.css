@@ -12,7 +12,9 @@ main{
 
 div.ticker{
 }
+
 div.market{
+  position: absolute;
   right: 0px;
   width: 15vw;
   min-height: 90vh;

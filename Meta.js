@@ -9,6 +9,7 @@ class Meta {
     this.box = null
     this.high = null
     this.low = null
+    this.wait = false
   }
 
   setId(){
@@ -22,7 +23,7 @@ class Meta {
   makeUrl(q){
     let base = 'https://api.iextrading.com/1.0/stock/'
     if (q){
-      this.url = encodeURI(`${base}${this.sec}/quote`)
+      this.url = encodeURI(`${base}${this.sec}/${q}`)
     }
     else{
       this.url = encodeURI(`${base}${this.sec}/chart/${this.time}`) 
@@ -32,6 +33,7 @@ class Meta {
 
   deleteMe(meta){
     meta.box.parentNode.removeChild(meta.box)
-    metaArr.splice(meta.id, 1)
+    let ind = metaArr.findIndex(m => m.id === meta.id)
+    metaArr.splice(ind, 1)
   }
 }

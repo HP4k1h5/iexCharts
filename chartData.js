@@ -48,7 +48,7 @@ function makeSvg(vals, typ, priceVol, div){
       x: - svgW / vals[0].length,
       y: 0
     }
-
+    
     let pH = Math.max(...vals[0])
     let lH = Math.max(...vals[1])
     vals[0].forEach((p,i)=> {

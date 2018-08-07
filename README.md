@@ -27,6 +27,8 @@
 
 `#type` - chart type [bars, line, hiLo, (OHLC soon)]
 
+`/searchTerm` - returns possible matches with ticker symbols
+
 #### example commands: 
 
 `$goog :3m #hiLo` - produces a 3-month hiLo  chart of google

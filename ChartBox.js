@@ -97,6 +97,9 @@ function handleReq(val, id){
     fetchNews(meta)
     return 
   }
+  if (/\//.test(val)){
+    getSymbols(val.match(/\/(\w+)/)[1], meta)
+  }
 
   /\bnew\b/.test(val) 
     ? createBox(meta.sec, meta.time, meta.type)

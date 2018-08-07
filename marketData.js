@@ -20,7 +20,7 @@ function fetchMovers(){
     r.forEach(o => { 
       o.forEach(p => {
         let li = document.createElement('li')
-        let txt = `${p.symbol}: ${p.changePercent*100}%`
+        let txt = `${p.symbol}: ${(p.changePercent*100).toFixed(2)}%`
         txt = document.createTextNode(txt)
         li.appendChild(txt)
         p.change >= 0 ? 

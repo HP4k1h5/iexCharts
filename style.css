@@ -39,12 +39,18 @@ svg{
 
 .price{
   width: 30vw;
-  height: 40vh;
+  height: 45vh;
 }
 
 .vol{
   width: 30vw;
   height: 20vh;
+}
+
+div.results{
+  width: 30vw;
+  height: 70vh;
+  overflow: scroll;
 }
 
 div.quote{

@@ -16,24 +16,6 @@ function getQuote(meta){
   return fetch(meta.url).then(resp => resp.json())
 }
 
-function cleanDiv(d, box){
-  let svgs = box.getElementsByTagName('svg')
-  while (svgs[0]){
-    svgs[0].parentNode.removeChild(svgs[0])
-  }
-  let wS = box.getElementsByClassName('waiting')
-  wS[0] ? wS[0].parentNode.removeChild(wS[0])
-    : null
-  let news = box.getElementsByClassName('news')[0]
-  news ? news.parentNode.removeChild(news)
-    : null
-  let err = document.getElementsByClassName('err')
-  while (err[0]){
-    err[0].parentNode.removeChild(err[0])
-  }
-  return d
-}
-
 function treatQuote(q, meta){
   let ul = document.createElement('ul')
   let vals = {

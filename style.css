@@ -60,6 +60,7 @@ div.quote{
   height: 100%;
   color: #112233;
   font-weight: bolder;
+  font-size:1.3vw;
   overflow: scroll;
 }
 

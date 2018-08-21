@@ -64,7 +64,7 @@ function fetchNews(meta){
     .then(j => j.json())
     .then(d => {
       let txt = d.reduce((a,n) => 
-        a + n.datetime.slice(0,16) + ': ' + n.source
+        a + '<hr>' + n.datetime.slice(0,16) + ': ' + n.source
         + '<br><b>' + n.headline + '</b>' 
         + '<br>' + n.summary + ':' 
         + '<a href=' + n.url + '>' + 'link' + '</a>' 

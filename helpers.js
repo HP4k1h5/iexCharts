@@ -34,7 +34,8 @@ function  findDiff(term, txt){
     return [diff, l]
   })
   if (letters.length > 0){
-    let diff = letters.map(l => Math.abs(l[0])).reduce((a,v) => {
+    let diff = letters.map(l => Math.abs(l[0]))
+      .reduce((a,v) => {
       v = v < 1
         ? 10 - v
         : - v
@@ -57,7 +58,8 @@ function getSymbols(term, meta){
       })
       possibles = possibles.sort((a,b) => b[0] - a[0])
       return possibles.slice(0,20)
-    }).then(d => showResults(d, meta))
+    })
+    .then(d => showResults(d, meta))
 }
 
 function showResults(rs, meta){
@@ -91,12 +93,8 @@ function waiting(meta){
 
     function forward(){
       while (i%l < l && line.length <= l-1){
-        if (i % l === line.length){
-          line += cursor
-        }
-        else{
-          line += dot
-        }
+        if (i % l === line.length) line += cursor
+        else line += dot
       }
       i++
       return line
@@ -104,32 +102,24 @@ function waiting(meta){
 
     function backward(){
       while (i%l < l+1 && line.length <= l-1){
-        if (l-1 - (i%l) === line.length){
-          line += cursor
-        }
-        else {
-          line += dot
-        }
+        if (l-1 - (i%l) === line.length) line += cursor
+        else line += dot
       }
       i++
       return line
     }
 
     if (dir === 0){
-      if (i%l === l-1){
-        dir = 1
-      }
+      if (i%l === l-1)  dir = 1
       return forward()
     }
     else{
-      if (i%l === l-1){
-        dir = 0
-      }
+      if (i%l === l-1) dir = 0
       return backward()
     }
   }
 
-  let interval = setInterval(wait, 500)
+  let interval = setInterval(wait, 300)
   function wait(){
   let bftxt = document.createTextNode(backForth())
     meta.wait 

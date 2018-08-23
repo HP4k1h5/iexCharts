@@ -1,4 +1,5 @@
 function makeCharts(d, meta){
+  cleanDiv(null, meta.box)
   let prices = makeSvg(d.slice(0,-1), meta.type, 'price', meta.box)
   meta.box.appendChild(prices)
   let vols = makeSvg(d.slice(-1), 'bars', 'vol', meta.box)

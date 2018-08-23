@@ -10,11 +10,19 @@ main{
   flex-wrap: wrap;
 }
 
+div.pageHeader{
+  position: relative;
+  border: 2px solid grey;
+  margin: 1vh;
+  min-width: 100vw;
+  min-height: 5vh;
+}
 div.ticker{
 }
 
 div.market{
   position: absolute;
+  display: block;
   right: 0px;
   width: 15vw;
   min-height: 90vh;
@@ -107,7 +115,9 @@ input.in{
 span.waiting{
   display: inline;
   color: #555555;
-  border: 1px solid grey;
+  border: 1px dashed grey;
+  background: #23aabb;
+  margin: 2px;
 }
 
 div.news{

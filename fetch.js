@@ -1,7 +1,7 @@
 function fetchChart(meta){
   let data = getData(meta)
     .then(d => treatData(d, meta))
-    .then(d => cleanDiv(d, meta.box))
+    //.then(d => cleanDiv(d, meta.box))
     .then(d => makeCharts(d, meta))
     .then(m => getQuote(m))
     .then(q => treatQuote(q, meta))
@@ -70,7 +70,16 @@ function getData(meta){
         ? resp.json() 
         : '' + resp.statusText
     })
-    .catch(err => { console.error('fetch err: ', err)})
+    .catch(err => {
+      meta.wait = false
+      cleanDiv(null, meta.box)
+      let span = document.createElement('span')
+      span.setAttribute('class', 'err')
+      let txt = document.createTextNode('getData err: ' + err.message)
+      span.appendChild(txt)
+      meta.box.appendChild(span)
+      console.error('fetch err: ', err)
+    })
 }
 
 function treatData(data, meta){
@@ -80,24 +89,24 @@ function treatData(data, meta){
     OHLC: ['open', 'high', 'low', 'close', 'volume'],
     hilo: ['high', 'low', 'volume']
   }
-  cleanDiv(null, meta.box)
-  if (typeof data === 'string'){
+  if (typeof data === 'string' || ! data){
     let span = document.createElement('span')
     span.setAttribute('class', 'err') 
-    let txt = document.createTextNode(meta.url + ': ' + data)
+    let txt = document.createTextNode(`no Data: data= ${data}`)
     span.appendChild(txt)
     meta.box.appendChild(span) 
-    throw new Error(meta.url, data)
+    throw new Error(`tretatData err: no data`)
   } 
 
   if (! valObj[meta.type]){
     let span = document.createElement('span')
     span.setAttribute('class', 'err') 
-    let txt = document.createTextNode('invalid chart type: ' + meta.type
-      + ':: VALID types: #bars #line #hilo'
+    let txt = document.createTextNode(
+    `invalid chart type: ${meta.type}
+      :: VALID types: #bars #line #hilo`
     )
     span.appendChild(txt)
-    meta.box.appendChild(span) 
+    meta.box.insertBefore(span, meta.box.firstChild) 
     throw new Error('invalid chart type', meta.type)
   } 
 

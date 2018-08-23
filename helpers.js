@@ -9,7 +9,7 @@ function cleanDiv(d, box){
   let news = box.getElementsByClassName('news')[0]
   news ? news.parentNode.removeChild(news)
     : null
-  let err = document.getElementsByClassName('err')
+  let err = box.getElementsByClassName('err')
   while (err[0]){
     err[0].parentNode.removeChild(err[0])
   }
@@ -80,7 +80,6 @@ function showResults(rs, meta){
 
 function waiting(meta){
   meta.wait = true
-
   let waitSpan = document.createElement('span')
   waitSpan.setAttribute('class', 'waiting')
   meta.box.getElementsByClassName('chartHeader')[0].appendChild(waitSpan)
@@ -120,14 +119,19 @@ function waiting(meta){
     }
   }
 
-  let interval = setInterval(wait, 10)
-  let intTimer = 0
+  let interval = setInterval(wait, 80)
+  
   function wait(){
-    console.log( intTimer++)
+  // let intTimer = 0
+  // wait info 
+  // console.log( 'wait meta.wait', meta.wait)
+  // console.log( intTimer++)
   let bftxt = document.createTextNode(backForth())
-    meta.wait 
-      ? (waitSpan.innerHTML = '',
-        waitSpan.appendChild(bftxt))
+    meta.wait
+      ? (
+        waitSpan.innerHTML = '',
+        waitSpan.appendChild(bftxt)
+      )
       : window.clearInterval(interval)
   }
 }

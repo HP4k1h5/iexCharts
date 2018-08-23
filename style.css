@@ -27,19 +27,19 @@ div.market{
 div.chartWindow{
   background-color: navy;
   width: 40vw;
-  max-height: 70vh;
-  min-height: 70vh;
+  height: 75vh;
   border-top: 3px solid blueviolet;
   border-left: 3px solid darkgrey;
 }
 
 svg{
+  position: inline-block;
   background: black;
 }
 
 .price{
   width: 30vw;
-  height: 45vh;
+  height: 47vh;
 }
 
 .vol{
@@ -50,18 +50,20 @@ svg{
 div.results{
   width: 30vw;
   height: 70vh;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 div.quote{
+  position: inline-block;
   float: right;
   background-color: grey;
   width: 10vw;
-  height: 100%;
+  height: 70vh;
   color: #112233;
   font-weight: bolder;
   font-size:1.3vw;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 ul{
@@ -84,15 +86,18 @@ li.red{
   font-weight: bolder;
 }
 
-p{
-
+.chartHeader{
+  position: inline-block;
+  width: 25vw;; 
+  height: 5vh;
+  border: solid 1px grey;
 }
-
 .chartTitle{
   margin: .5vw;
 }
 
 input.in{
+  height: 3vh;
   color: green;
   font-weight: bold;
   user-select: auto;

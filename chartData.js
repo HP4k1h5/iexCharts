@@ -29,6 +29,7 @@ function makeSvg(vals, typ, priceVol, div){
     let pH = Math.max(...vals)
     let x = 0
     let xinc = svgW / (vals.length - 1) 
+
     vals.forEach((p,i) => {
       points += `${x},${svgH - (svgH / pH * p)} `
       x += xinc
@@ -43,8 +44,8 @@ function makeSvg(vals, typ, priceVol, div){
     let opts = {
       width: svgW / vals[0].length,
       height: 0,
-      fill: 'green',
-      stroke: 'red',
+      fill: null,
+      //stroke: 'red',
       x: - svgW / vals[0].length,
       y: 0
     }
@@ -57,9 +58,12 @@ function makeSvg(vals, typ, priceVol, div){
       opts.height = svgH / pH * p
       opts.y = svgH - opts.height
       i > 0 && p >= a[i-1]
-        ? opts.stroke = 'green'
-        : opts.stroke = 'red'
-
+        ? (//opts.stroke = 'green'
+          opts.fill = 'green'
+          )
+        : (//opts.stroke = 'red'
+          opts.fill = 'red'
+          )
       let lHeight = svgH / lH * vals[1][i]
       opts.height = (lHeight - opts.height) 
       Object.keys(opts).forEach(k => {
@@ -75,7 +79,7 @@ function makeSvg(vals, typ, priceVol, div){
       width: svgW / vals.length,
       height: 0,
       fill: 'red',
-      stroke: 'green',
+    //  stroke: 'green',
       x: - svgW / vals.length,
       y: 0
     }
@@ -87,8 +91,12 @@ function makeSvg(vals, typ, priceVol, div){
       opts.height = svgH / pH * p
       opts.y = svgH - opts.height
       i > 0 && p >= a[i-1]
-        ? opts.stroke = 'green'
-        : opts.stroke = 'red'
+        ? (//opts.stroke = 'green',
+          opts.fill = 'green'
+          )
+        : (//opts.stroke = 'red',
+          opts.fill = 'red'
+          )
       Object.keys(opts).forEach(k => {
         rect.setAttributeNS(null, k, opts[k])
       })    
@@ -97,12 +105,4 @@ function makeSvg(vals, typ, priceVol, div){
   } 
   typObj[typ](vals)
   return svg
-}
-
-function addElem(what, where){
-  document.getElementById(where).appendChild(what)
-}
-
-function makeElem(what){
-  return document.createElement(what)
 }

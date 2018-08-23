@@ -11,7 +11,8 @@ function makeBox(meta){
   box.setAttribute('class', 'chartWindow')
   box.appendChild(makeTitle(meta))
   box.appendChild(makeQuoteDiv())
-  box.appendChild(makeInput(meta.id))
+  box.getElementsByClassName('chartHeader')[0]
+    .appendChild(makeInput(meta.id))
   document.getElementById('main').appendChild(box)
   meta.box = box
   fetchChart(meta)
@@ -19,16 +20,19 @@ function makeBox(meta){
 
 function reBox(meta){
   meta.makeUrl()
-  meta.box.childNodes[0].textContent = `\$${meta.sec} : ${meta.time}`
+  document.getElementsByClassName('chartTitle')[0].textContent = `\$${meta.sec} : ${meta.time}`
   fetchChart(meta)
 }
 
 function makeTitle(meta){
-  let p = document.createElement('span')
-  p.setAttribute('class', 'chartTitle')
+  let div = document.createElement('div')
+  div.setAttribute('class', 'chartHeader')
+  let span = document.createElement('span')
+  span.setAttribute('class', 'chartTitle')
   let txt = document.createTextNode(`\$${meta.sec} : ${meta.time}`)
-  p.appendChild(txt)
-  return p
+  span.appendChild(txt)
+  div.appendChild(span)
+  return div
 }
 
 function makeQuoteDiv(){

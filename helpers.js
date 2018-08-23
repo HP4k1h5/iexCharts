@@ -36,7 +36,7 @@ function  findDiff(term, txt){
   if (letters.length > 0){
     let diff = letters.map(l => Math.abs(l[0]))
       .reduce((a,v) => {
-      v = v < 1
+      v = v < 2
         ? 10 - v
         : - v
       return a+v
@@ -80,9 +80,10 @@ function showResults(rs, meta){
 
 function waiting(meta){
   meta.wait = true
+
   let waitSpan = document.createElement('span')
   waitSpan.setAttribute('class', 'waiting')
-  meta.box.appendChild(waitSpan)
+  meta.box.getElementsByClassName('chartHeader')[0].appendChild(waitSpan)
   let i = 0
   let dir = 0
   function backForth(){
@@ -119,8 +120,10 @@ function waiting(meta){
     }
   }
 
-  let interval = setInterval(wait, 300)
+  let interval = setInterval(wait, 10)
+  let intTimer = 0
   function wait(){
+    console.log( intTimer++)
   let bftxt = document.createTextNode(backForth())
     meta.wait 
       ? (waitSpan.innerHTML = '',

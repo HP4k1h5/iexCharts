@@ -4,8 +4,9 @@ function cleanDiv(d, box){
     svgs[0].parentNode.removeChild(svgs[0])
   }
   let wS = box.getElementsByClassName('waiting')
-  wS[0] ? wS[0].parentNode.removeChild(wS[0])
-    : null
+  while (wS[0]){
+    wS[0].parentNode.removeChild(wS[0])
+  }
   let news = box.getElementsByClassName('news')[0]
   news ? news.parentNode.removeChild(news)
     : null
@@ -82,6 +83,7 @@ function waiting(meta){
   meta.wait = true
   let waitSpan = document.createElement('span')
   waitSpan.setAttribute('class', 'waiting')
+  waitSpan.id = 'waiting'
   meta.box.getElementsByClassName('chartHeader')[0].appendChild(waitSpan)
   let i = 0
   let dir = 0
@@ -121,17 +123,20 @@ function waiting(meta){
 
   let interval = setInterval(wait, 80)
   
-  function wait(){
   // let intTimer = 0
+
+  function wait(){
   // wait info 
   // console.log( 'wait meta.wait', meta.wait)
   // console.log( intTimer++)
-  let bftxt = document.createTextNode(backForth())
-    meta.wait
-      ? (
-        waitSpan.innerHTML = '',
-        waitSpan.appendChild(bftxt)
-      )
-      : window.clearInterval(interval)
+    if (meta.wait){
+      let bftxt = document.createTextNode(backForth())
+      //waitSpan.innerHTML = ''
+      waitSpan.appendChild(bftxt)
+    }
+    else{
+      waitSpan.innerHTML = ''
+      window.clearInterval(interval)
+    } 
   }
 }

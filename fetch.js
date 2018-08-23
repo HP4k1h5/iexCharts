@@ -90,15 +90,17 @@ function treatData(data, meta){
     hilo: ['high', 'low', 'volume']
   }
   if (typeof data === 'string' || ! data){
+    meta.wait = false
     let span = document.createElement('span')
     span.setAttribute('class', 'err') 
     let txt = document.createTextNode(`no Data: data= ${data}`)
     span.appendChild(txt)
-    meta.box.appendChild(span) 
+    meta.box.insertBefore(span, meta.box.nextSibling) 
     throw new Error(`tretatData err: no data`)
   } 
 
   if (! valObj[meta.type]){
+    meta.wait = false
     let span = document.createElement('span')
     span.setAttribute('class', 'err') 
     let txt = document.createTextNode(
@@ -107,6 +109,7 @@ function treatData(data, meta){
     )
     span.appendChild(txt)
     meta.box.insertBefore(span, meta.box.firstChild) 
+    meta.box.insertBefore(span, meta.box.nextSibling) 
     throw new Error('invalid chart type', meta.type)
   } 
 

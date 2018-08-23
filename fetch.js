@@ -100,12 +100,15 @@ function treatData(data, meta){
     meta.box.appendChild(span) 
     throw new Error('invalid chart type', meta.type)
   } 
+
   let valArr = valObj[meta.type]
     .map(v => Object.keys(data)
       .map(d => data[d][v])
       .filter(i => i > 0))
   meta.high = Math.max(...valArr[0])
   meta.low = Math.min(...valArr[0])
+  meta.open = valArr[0][0]
+  meta.close = valArr[0][valArr.length - 1]
   valArr = valArr.map(z => zeroVal(z))
   function zeroVal(arr){
     let lo = Math.min(...arr)

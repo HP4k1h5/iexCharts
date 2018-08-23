@@ -51,11 +51,15 @@ function makeSvg(vals, typ, priceVol, div){
     
     let pH = Math.max(...vals[0])
     let lH = Math.max(...vals[1])
-    vals[0].forEach((p,i)=> {
+    vals[0].forEach((p,i,a)=> {
       let rect = document.createElementNS(ns, 'rect')
       opts.x += opts.width
       opts.height = svgH / pH * p
       opts.y = svgH - opts.height
+      i > 0 && p >= a[i-1]
+        ? opts.stroke = 'green'
+        : opts.stroke = 'red'
+
       let lHeight = svgH / lH * vals[1][i]
       opts.height = (lHeight - opts.height) 
       Object.keys(opts).forEach(k => {
@@ -77,11 +81,14 @@ function makeSvg(vals, typ, priceVol, div){
     }
 
     let pH = Math.max(...vals)
-    vals.forEach(p => {
+    vals.forEach((p,i,a) => {
       let rect = document.createElementNS(ns, 'rect')
       opts.x += opts.width
       opts.height = svgH / pH * p
       opts.y = svgH - opts.height
+      i > 0 && p >= a[i-1]
+        ? opts.stroke = 'green'
+        : opts.stroke = 'red'
       Object.keys(opts).forEach(k => {
         rect.setAttributeNS(null, k, opts[k])
       })    

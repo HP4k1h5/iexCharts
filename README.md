@@ -15,6 +15,8 @@
 ### Commands: 
 (all commands are space separated, order is not important)
 
+`help` - displays commands
+
 `new` - opens a new terminal window with the same content as original, or new content if provided
 
 `close` - closes the current terminal window

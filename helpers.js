@@ -7,18 +7,43 @@ function cleanDiv(d, box){
   while (wS[0]){
     wS[0].parentNode.removeChild(wS[0])
   }
-  let news = box.getElementsByClassName('news')[0]
-  news ? news.parentNode.removeChild(news)
-    : null
+  let news = box.getElementsByClassName('news')
+  while (news[0]){
+    news[0].parentNode.removeChild(news[0])
+  }
   let err = box.getElementsByClassName('err')
   while (err[0]){
     err[0].parentNode.removeChild(err[0])
   }
-  let res = document.getElementsByClassName('results')
-  while(res[0])(
+  let res = box.getElementsByClassName('results')
+  while(res[0]){
     res[0].parentNode.removeChild(res[0])
-  )
+  }
+  let help = box.getElementsByClassName('help')
+  while(help[0]){
+    help[0].parentNode.removeChild(help[0])
+  }
   return d
+}
+
+function showHelp(meta){
+  cleanDiv(null, meta.box)
+
+  let helpText  = `Commands:\n\n
+help - displays commands
+new - opens a new terminal window with the same content as original, or new content if provided
+close - closes the current terminal window
+! - retrieves news
+$stock - changes the current security
+:time - [1d(default), 1m, 3m, 6m, ytd, 1y, 2y, 5y]
+#type - chart type [bars, line, hiLo, (OHLC soon)]
+/searchTerm - returns possible matches with ticker symbols`
+  //helpText = document.createTextNode(helpText)
+  let helpDiv = document.createElement('div')
+  helpDiv.setAttribute('class', 'help')
+//  helpDiv.appendChild(helpText)
+  helpDiv.innerHTML=helpText
+  meta.box.appendChild(helpDiv)
 }
 
 function  findDiff(term, txt){

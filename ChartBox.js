@@ -57,7 +57,7 @@ function makeInput(id){
 
 function fetchNews(meta){
   cleanDiv(null, meta.box)
-  meta.box.childNodes[0].textContent = `!${meta.sec} : NEWS!!`
+  meta.box.getElementsByClassName('chartTitle')[0].textContent = `\$${meta.sec} : ${meta.time}`
   let br = document.createElement('br')
   let newsDiv = document.createElement('div')
   newsDiv.setAttribute('class', 'news')
@@ -85,6 +85,10 @@ function handleReq(val, id){
     : meta
   if (/\bclose\b/.test(val)){
     meta.deleteMe(meta)
+    return
+  }
+  if (/\bhelp\b/.test(val)){
+    showHelp(meta)
     return
   }
 

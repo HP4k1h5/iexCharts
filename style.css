@@ -127,16 +127,24 @@ div.news{
   height: 60vh;
 }
 
+div.help{
+  max-width: 40vw;
+  border: solid 2px cyan;
+  background: #dedede;
+  color: #000000;
+  height: 60vh;
+}
+
 span.err{
-  display: block;
+  display: inline-block;
   border: #bf120a solid 3px;
-  min-width: 30vw;
+  width: 25vw;
   color: #777777;
   background: #dedede;
 }
 
 .footer{
-  margin-top: 1vh;
+r margin-top: 1vh;
   bottom: 0px;
   left: 1vw;
   border-top: solid blueviolet;

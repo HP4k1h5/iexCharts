@@ -76,7 +76,7 @@ function getData(meta){
       span.setAttribute('class', 'err')
       let txt = document.createTextNode('getData err: ' + err.message)
       span.appendChild(txt)
-      meta.box.appendChild(span)
+      meta.box.firstChild.nextSibling.appendChild(span)
       console.error('fetch err: ', err)
     })
 }
@@ -116,14 +116,15 @@ function treatData(data, meta){
   let valArr = valObj[meta.type]
     .map(v => Object.keys(data)
       .map(d => data[d][v])
-      .filter(i => i > 0))
+      .filter(i => i > 0)
+    )
   meta.high = Math.max(...valArr[0])
   meta.low = Math.min(...valArr[0])
   meta.open = valArr[0][0]
   meta.close = valArr[0][valArr.length - 1]
-  valArr = valArr.map(z => zeroVal(z))
-  function zeroVal(arr){
-    return arr.map(v => v - meta.low) 
+  valArr[0] = valArr[0].map(z => z - meta.low)
+  if (valArr.length === 3){
+    valArr[1] = valArr[1].map(z => z - meta.low)
   }
   return valArr
 }

@@ -122,13 +122,13 @@ function waiting(meta){
   
   // let intTimer = 0
 
+  meta.box.getElementsByClassName('chartHeader')[0].appendChild(waitSpan)
   function wait(){
   // wait info 
   // console.log( 'wait meta.wait', meta.wait)
   // console.log( intTimer++)
     let bftxt = backForth()
     if (meta.wait){
-      meta.box.getElementsByClassName('chartHeader')[0].appendChild(waitSpan)
       waitSpan.innerHTML = bftxt
     }
     else{

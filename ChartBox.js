@@ -20,7 +20,7 @@ function makeBox(meta){
 
 function reBox(meta){
   meta.makeUrl()
-  document.getElementsByClassName('chartTitle')[0].textContent = `\$${meta.sec} : ${meta.time}`
+  meta.box.getElementsByClassName('chartTitle')[0].textContent = `\$${meta.sec} : ${meta.time}`
   fetchChart(meta)
 }
 

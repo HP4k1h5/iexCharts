@@ -83,7 +83,6 @@ function waiting(meta){
   meta.wait = true
   let waitSpan = document.createElement('span')
   waitSpan.setAttribute('class', 'waiting')
-  waitSpan.id = 'waiting'
   meta.box.getElementsByClassName('chartHeader')[0].appendChild(waitSpan)
   let i = 0
   let dir = 0
@@ -92,7 +91,6 @@ function waiting(meta){
     let dot = '•'
     let cursor = '|'
     let line = ''
-
     function forward(){
       while (i%l < l && line.length <= l-1){
         if (i % l === line.length) line += cursor
@@ -101,7 +99,6 @@ function waiting(meta){
       i++
       return line
     } 
-
     function backward(){
       while (i%l < l+1 && line.length <= l-1){
         if (l-1 - (i%l) === line.length) line += cursor
@@ -129,13 +126,16 @@ function waiting(meta){
   // wait info 
   // console.log( 'wait meta.wait', meta.wait)
   // console.log( intTimer++)
+    let bftxt = backForth()
     if (meta.wait){
-      let bftxt = document.createTextNode(backForth())
-      //waitSpan.innerHTML = ''
-      waitSpan.appendChild(bftxt)
+      meta.box.getElementsByClassName('chartHeader')[0].appendChild(waitSpan)
+      waitSpan.innerHTML = bftxt
     }
     else{
-      waitSpan.innerHTML = ''
+      let waits = meta.box.getElementsByClassName('waiting')
+      while(waits[0]){
+        waits[0].parentNode.removeChild(waits[0])
+      }
       window.clearInterval(interval)
     } 
   }

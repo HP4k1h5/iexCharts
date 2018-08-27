@@ -130,6 +130,7 @@ div.news{
 span.err{
   display: block;
   border: #bf120a solid 3px;
+  width: 30vw;
   color: #777777;
   background: #dedede;
 }

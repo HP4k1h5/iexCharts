@@ -72,7 +72,6 @@ function getData(meta){
     })
     .catch(err => {
       meta.wait = false
-      cleanDiv(null, meta.box)
       let span = document.createElement('span')
       span.setAttribute('class', 'err')
       let txt = document.createTextNode('getData err: ' + err.message)
@@ -96,11 +95,12 @@ function treatData(data, meta){
     let txt = document.createTextNode(`no Data: data= ${data}`)
     span.appendChild(txt)
     meta.box.insertBefore(span, meta.box.nextSibling) 
-    throw new Error(`tretatData err: no data`)
+    throw new Error(`tretatData err: data=${data}`)
   } 
 
   if (! valObj[meta.type]){
     meta.wait = false
+    cleanDiv(null, meta.box)
     let span = document.createElement('span')
     span.setAttribute('class', 'err') 
     let txt = document.createTextNode(
@@ -109,7 +109,7 @@ function treatData(data, meta){
     )
     span.appendChild(txt)
     //meta.box.insertBefore(span, meta.box.firstChild) 
-    meta.box.insertBefore(span, meta.box.nextSibling) 
+    meta.box.insertBefore(span, meta.box.firstChild.nextSibling) 
     throw new Error('invalid chart type', meta.type)
   } 
 
@@ -123,8 +123,7 @@ function treatData(data, meta){
   meta.close = valArr[0][valArr.length - 1]
   valArr = valArr.map(z => zeroVal(z))
   function zeroVal(arr){
-    let lo = Math.min(...arr)
-    return arr.map(v => v - lo) 
+    return arr.map(v => v - meta.low) 
   }
   return valArr
 }

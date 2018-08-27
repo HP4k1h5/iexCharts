@@ -87,7 +87,7 @@ function treatData(data, meta){
     line: ['close', 'volume'],
     bars: ['close', 'volume'],
     OHLC: ['open', 'high', 'low', 'close', 'volume'],
-    hilo: ['high', 'low', 'volume']
+    hilo: ['low', 'high', 'volume']
   }
   if (typeof data === 'string' || ! data){
     meta.wait = false
@@ -108,7 +108,7 @@ function treatData(data, meta){
       :: VALID types: #bars #line #hilo`
     )
     span.appendChild(txt)
-    meta.box.insertBefore(span, meta.box.firstChild) 
+    //meta.box.insertBefore(span, meta.box.firstChild) 
     meta.box.insertBefore(span, meta.box.nextSibling) 
     throw new Error('invalid chart type', meta.type)
   } 

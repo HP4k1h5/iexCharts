@@ -10,6 +10,11 @@ class Meta {
     this.high = null
     this.low = null
     this.wait = false
+    this.size = {
+      width: '30vw',
+      height: '47vh'
+    
+    }
   }
 
   setId(){

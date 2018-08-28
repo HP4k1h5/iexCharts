@@ -16,6 +16,7 @@ div.pageHeader{
   margin: 1vh;
   min-width: 100vw;
   min-height: 5vh;
+  height: 10%;
 }
 div.ticker{
 }
@@ -34,8 +35,8 @@ div.market{
 
 div.chartWindow{
   background-color: navy;
-  width: 40vw;
-  height: 75vh;
+  width: 40%;
+  height: 74vh;
   border-top: 3px solid blueviolet;
   border-left: 3px solid darkgrey;
 }
@@ -46,18 +47,18 @@ svg{
 }
 
 .price{
-  width: 30vw;
-  height: 47vh;
+  width: 80%;
+  height: 70%;
 }
 
 .vol{
-  width: 30vw;
-  height: 20vh;
+  width: 80%;
+  height: 20%;
 }
 
 div.results{
-  width: 30vw;
-  height: 70vh;
+  width: 80,%;
+  height: 100%;
   overflow-y: scroll;
 }
 
@@ -65,7 +66,7 @@ div.quote{
   position: inline-block;
   float: right;
   background-color: grey;
-  width: 10vw;
+  width: 20%;
   height: 70vh;
   color: #112233;
   font-weight: bolder;

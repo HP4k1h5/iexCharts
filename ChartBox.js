@@ -19,97 +19,105 @@ function makeBox(meta){
 }
 
 function reBox(meta){
-  meta.makeUrl()
-  meta.box.getElementsByClassName('chartTitle')[0].textContent = `\$${meta.sec} : ${meta.time}`
-  fetchChart(meta)
+meta.box.style = `width: ${meta.size.width}`
+meta.makeUrl()
+meta.box.getElementsByClassName('chartTitle')[0].textContent = `\$${meta.sec} : ${meta.time}`
+fetchChart(meta)
 }
 
 function makeTitle(meta){
-  let div = document.createElement('div')
-  div.setAttribute('class', 'chartHeader')
-  let span = document.createElement('span')
-  span.setAttribute('class', 'chartTitle')
-  let txt = document.createTextNode(`\$${meta.sec} : ${meta.time}`)
-  span.appendChild(txt)
-  div.appendChild(span)
-  return div
+let div = document.createElement('div')
+div.setAttribute('class', 'chartHeader')
+let span = document.createElement('span')
+span.setAttribute('class', 'chartTitle')
+let txt = document.createTextNode(`\$${meta.sec} : ${meta.time}`)
+span.appendChild(txt)
+div.appendChild(span)
+return div
 }
 
 function makeQuoteDiv(){
-  let div = document.createElement('div')
-  div.setAttribute('class', 'quote')
-  return div
+let div = document.createElement('div')
+div.setAttribute('class', 'quote')
+return div
 }
 
 function makeInput(id){
-  let inputField = document.createElement('input')
-  inputField.id = 'input'
-  inputField.setAttribute('class', 'in')
-  inputField.addEventListener('keypress', e => {
-    if (e.key === 'Enter'){
-      handleReq(inputField.value, id)
-      inputField.value = ''
-      inputField.autofocus = true
-    }
-  })
-  return inputField
+let inputField = document.createElement('input')
+inputField.id = 'input'
+inputField.setAttribute('class', 'in')
+inputField.addEventListener('keypress', e => {
+  if (e.key === 'Enter'){
+    handleReq(inputField.value, id)
+    inputField.value = ''
+    inputField.autofocus = true
+  }
+})
+return inputField
 }
 
 function fetchNews(meta){
-  cleanDiv(null, meta.box)
-  meta.box.getElementsByClassName('chartTitle')[0].textContent = `\$${meta.sec} : ${meta.time}`
-  let br = document.createElement('br')
-  let newsDiv = document.createElement('div')
-  newsDiv.setAttribute('class', 'news')
-  newsDiv.id = 'news'
-  meta.box.appendChild(newsDiv)
-  meta.makeUrl('news')
-  fetch(meta.url)
-    .then(j => j.json())
-    .then(d => {
-      let txt = d.reduce((a,n) => 
-        a + '<hr>' + n.datetime.slice(0,16) + ': ' + n.source
-        + '<br><b>' + n.headline + '</b>' 
-        + '<br>' + n.summary + ':' 
-        + '<a href=' + n.url + '>' + 'link' + '</a>' 
-        + '<br>' + '•••'
-        , '')
-      newsDiv.innerHTML = txt
-    })
+cleanDiv(null, meta.box)
+meta.box.getElementsByClassName('chartTitle')[0].textContent = `\$${meta.sec} : ${meta.time}`
+let br = document.createElement('br')
+let newsDiv = document.createElement('div')
+newsDiv.setAttribute('class', 'news')
+newsDiv.id = 'news'
+meta.box.appendChild(newsDiv)
+meta.makeUrl('news')
+fetch(meta.url)
+  .then(j => j.json())
+  .then(d => {
+    let txt = d.reduce((a,n) => 
+      a + '<hr>' + n.datetime.slice(0,16) + ': ' + n.source
+      + '<br><b>' + n.headline + '</b>' 
+      + '<br>' + n.summary + ':' 
+      + '<a href=' + n.url + '>' + 'link' + '</a>' 
+      + '<br>' + '•••'
+      , '')
+    newsDiv.innerHTML = txt
+  })
 }
 
 function handleReq(val, id){
-  let meta = metaArr.find(m => m.id === id)
-  meta = /\bnew\b/.test(val)
-    ? new Meta(meta.sec, meta.time, meta.type)
-    : meta
-  if (/\bclose\b/.test(val)){
-    meta.deleteMe(meta)
-    return
-  }
-  if (/\bhelp\b/.test(val)){
-    showHelp(meta)
-    return
-  }
+let meta = metaArr.find(m => m.id === id)
+meta = /\bnew\b/.test(val)
+  ? new Meta(meta.sec, meta.time, meta.type)
+  : meta
+if (/\bclose\b/.test(val)){
+  meta.deleteMe(meta)
+  return
+}
+if (/\bhelp\b/.test(val)){
+  showHelp(meta)
+  return
+}
 
-  if (/\$\w+/.test(val)){
-    meta.sec = val.match(/\$([\w.]+)/)[1]
-  }
-  if (/\:\w+/.test(val)){
-    meta.time = val.match(/\:([\w/\d]+)/)[1]
-  }
-  if (/#\w+/.test(val)){
-    meta.type = val.match(/#(\w+)/)[1].toLowerCase()
-  }
-  if (/\!/.test(val)){
-    fetchNews(meta)
-    return 
-  }
-  if (/\//.test(val)){
-    getSymbols(val.match(/\/(\w+)/)[1], meta)
-  }
+if (/\$\w+/.test(val)){
+  meta.sec = val.match(/\$([\w.]+)/)[1]
+}
+if (/\:\w+/.test(val)){
+  meta.time = val.match(/\:([\w/\d]+)/)[1]
+}
+if (/#\w+/.test(val)){
+  meta.type = val.match(/#(\w+)/)[1].toLowerCase()
+}
+if (/\b(sm|lg)\b/.test(val)){
+  let m =val.match(/\b(sm|lg)\b/)[0].toLowerCase()
+  meta.size.width = m === 'lg'
+    ? '80%'
+    : '40%'
+}
 
-  /\bnew\b/.test(val) 
-    ? createBox(meta.sec, meta.time, meta.type)
-    : reBox(meta)
+if (/\!/.test(val)){
+  fetchNews(meta)
+  return 
+}
+if (/\//.test(val)){
+  getSymbols(val.match(/\/(\w+)/)[1], meta)
+}
+
+/\bnew\b/.test(val) 
+  ? createBox(meta.sec, meta.time, meta.type)
+  : reBox(meta)
 }

@@ -1,6 +1,6 @@
 let header = document.createElement('div')
 header.setAttribute('class', 'pageHeader')
-document.getElementById('body').appendChild(header)
+document.getElementById('body').prepend(header)
 
 let footer = document.createElement('div')
 footer.setAttribute('class', 'footer')

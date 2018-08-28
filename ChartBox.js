@@ -15,6 +15,7 @@ function makeBox(meta){
     .appendChild(makeInput(meta.id))
   document.getElementById('main').appendChild(box)
   meta.box = box
+  meta.box.style = `width: ${meta.size.width}`
   fetchChart(meta)
 }
 

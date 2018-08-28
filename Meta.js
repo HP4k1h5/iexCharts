@@ -11,8 +11,8 @@ class Meta {
     this.low = null
     this.wait = false
     this.size = {
-      width: '30vw',
-      height: '47vh'
+      width: '40%',
+      height: '60%'
     
     }
   }

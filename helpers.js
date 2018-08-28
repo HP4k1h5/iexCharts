@@ -28,8 +28,9 @@ function cleanDiv(d, box){
 
 function showHelp(meta){
   cleanDiv(null, meta.box)
-
-  let helpText  = `Commands:\n\n
+  let helpDiv = document.createElement('div')
+  helpDiv.setAttribute('class', 'help')
+  let helpText  = `Commands:
 help - displays commands
 new - opens a new terminal window with the same content as original, or new content if provided
 close - closes the current terminal window
@@ -37,12 +38,15 @@ close - closes the current terminal window
 $stock - changes the current security
 :time - [1d(default), 1m, 3m, 6m, ytd, 1y, 2y, 5y]
 #type - chart type [bars, line, hiLo, (OHLC soon)]
-/searchTerm - returns possible matches with ticker symbols`
-  //helpText = document.createTextNode(helpText)
-  let helpDiv = document.createElement('div')
-  helpDiv.setAttribute('class', 'help')
-//  helpDiv.appendChild(helpText)
-  helpDiv.innerHTML=helpText
+/searchTerm - returns possible matches with ticker symbols`.split('\n')
+  let ul = document.createElement('ul')
+  helpText.forEach(t => {
+    let li = document.createElement('li')
+    t = document.createTextNode(t)
+    li.appendChild(t)
+    ul.appendChild(li)
+  })
+  helpDiv.appendChild(ul)
   meta.box.appendChild(helpDiv)
 }
 

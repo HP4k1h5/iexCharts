@@ -36,9 +36,11 @@ new - opens a new terminal window with the same content as original, or new cont
 close - closes the current terminal window
 ! - retrieves news
 $stock - changes the current security
-:time - [1d(default), 1m, 3m, 6m, ytd, 1y, 2y, 5y]
+:time - [1d(default), 5d, 1m, 3m, 6m, ytd, 1y, 2y, 5y]
 #type - chart type [bars, line, hiLo, (OHLC soon)]
-/searchTerm - returns possible matches with ticker symbols`.split('\n')
+/searchTerm - returns possible matches with ticker symbols
+lg | sm - lg returns large graph, sm a smalll one(default)
+`.split('\n')
   let ul = document.createElement('ul')
   helpText.forEach(t => {
     let li = document.createElement('li')

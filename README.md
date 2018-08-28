@@ -31,6 +31,8 @@
 
 `/searchTerm` - returns possible matches with ticker symbols
 
+`lg | sm` - lg returns large graph, sm a smalll one(default)
+
 #### example commands: 
 
 `$goog :3m #hiLo` - produces a 3-month hiLo  chart of google

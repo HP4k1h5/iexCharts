@@ -89,7 +89,10 @@ function getSymbols(term, meta){
       let possibles = []
       j.forEach(function(a){
         let p = findDiff(term, a.name)
+        let s = findDiff(term, a.symbol)
         p ? possibles.push([p[0], p[1], a.symbol])
+          : null
+        s ? possibles.push([s[0], a.name, a.symbol])   
           : null
       })
       possibles = possibles.sort((a,b) => b[0] - a[0])

@@ -17,9 +17,12 @@ function getQuote(meta){
 }
 
 function treatQuote(q, meta){
-  let ul = document.createElement('ul')
+  let nameTxt = document.createTextNode(q.companyName)
+  let compName = document.createElement('span')
+  compName.setAttribute('class', 'compName')
+  compName.appendChild(nameTxt)
+  meta.box.getElementsByClassName('chartHeader')[0].appendChild(compName)
   let vals = {
-    'companyName': q.companyName,
     'delayedPrice': q.delayedPrice,
     'change' : q.change,
     'changePercent': q.changePercent,
@@ -38,9 +41,10 @@ function treatQuote(q, meta){
   }
 
   let qB = meta.box.getElementsByClassName('quote')
-  let hL = () => `${meta.low}::${meta.high}`
+  let hL = () => `h:${meta.high.toFixed(2)}\nl:${meta.low.toFixed(2)}`
   let hLT = document.createTextNode(hL())
   qB[0].appendChild(hLT)
+  let ul = document.createElement('ul')
   Object.keys(vals).forEach(v => {
     let li = document.createElement('li')
     let txt = `${v} :: ${vals[v]}`

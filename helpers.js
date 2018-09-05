@@ -1,4 +1,8 @@
 function cleanDiv(d, box){
+  let name = box.getElementsByClassName('compName')
+  while (name[0]){
+    name[0].parentNode.removeChild(name[0])
+  }
   let svgs = box.getElementsByTagName('svg')
   while (svgs[0]){
     svgs[0].parentNode.removeChild(svgs[0])

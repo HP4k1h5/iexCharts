@@ -31,7 +31,7 @@ let div = document.createElement('div')
 div.setAttribute('class', 'chartHeader')
 let span = document.createElement('span')
 span.setAttribute('class', 'chartTitle')
-let txt = document.createTextNode(`\$${meta.sec} : ${meta.time}`)
+let txt = document.createTextNode(`\$${meta.sec}:${meta.time}`)
 span.appendChild(txt)
 div.appendChild(span)
 return div

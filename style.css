@@ -120,7 +120,7 @@ span.waiting{
 }
 
 div.news{
-  max-width: 40vw;
+  max-width: 80%;
   border: solid 2px grey;
   overflow-y: scroll;
   height: 60vh;

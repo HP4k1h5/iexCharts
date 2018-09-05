@@ -61,7 +61,10 @@ function treatQuote(q, meta){
 }
 
 function getData(meta){
-  waiting(meta)
+  document.getElementsByClassName('waiting').length === 0
+  ? waiting(meta)
+  : null
+
   return fetch(meta.url)
     .then(resp => {
       return resp.headers.get('content-type')

@@ -1,8 +1,8 @@
-let header = document.createElement('div')
+let header = document.createElement('header')
 header.setAttribute('class', 'pageHeader')
 document.getElementById('body').prepend(header)
 
-let footer = document.createElement('div')
+let footer = document.createElement('footer')
 footer.setAttribute('class', 'footer')
 
 // copyright current year

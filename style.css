@@ -11,7 +11,7 @@ main{
   flex-wrap: wrap;
 }
 
-div.pageHeader{
+header.pageHeader{
   border: 2px solid grey;
   margin: 1px 0px 1px 0px;
   max-width: 98vw;
@@ -45,12 +45,12 @@ svg{
   position: inline-block;
   background: black;
 }
-.price{
+svg.price{
   width: 80%;
   height: 70%;
 }
 
-.vol{
+svg.vol{
   width: 80%;
   height: 20%;
 }
@@ -111,6 +111,11 @@ input.in{
   caret-color: green;
 }
 
+a{
+  color: green;
+  text-decoration: none;
+}
+
 span.waiting{
   display: inline;
   color: #555555;
@@ -143,7 +148,7 @@ span.err{
   background: #dedede;
 }
 
-.footer{
+footer.footer{
   width:90vw;
   margin-top: 1vh;
   bottom: 0px;
@@ -152,7 +157,3 @@ span.err{
   border-left: solid grey;
 }
 
-a{
-  color: green;
-  text-decoration: none;
-}

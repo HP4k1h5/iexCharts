@@ -65,7 +65,7 @@ function treatQuote(q, meta){
 }
 
 function getData(meta){
-  document.getElementsByClassName('waiting').length === 0
+  meta.box.getElementsByClassName('waiting').length === 0
   ? waiting(meta)
   : null
 

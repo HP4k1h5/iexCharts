@@ -1,0 +1,11 @@
+body{
+  background-color: #999999;
+  color: #000000;
+}
+ 
+.login{
+  border: solid green 3px;
+}.create{
+  border: solid blue 3px;
+}
+

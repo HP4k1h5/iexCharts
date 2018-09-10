@@ -126,7 +126,7 @@ function treatData(data, meta){
   meta.high = Math.max(...valArr[0])
   meta.low = Math.min(...valArr[0])
   meta.open = valArr[0][0]
-  meta.close = valArr[0][valArr.length - 1]
+  meta.close = valArr[0][valArr[0].length - 1]
   valArr[0] = valArr[0].map(z => z - meta.low)
   if (valArr.length === 3){
     valArr[1] = valArr[1].map(z => z - meta.low)

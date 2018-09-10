@@ -121,7 +121,7 @@ function waiting(meta){
   meta.wait = true
   let waitSpan = document.createElement('span')
   waitSpan.setAttribute('class', 'waiting')
-  meta.box.getElementsByClassName('chartHeader')[0].appendChild(waitSpan)
+
   let i = 0
   let dir = 0
   function backForth(){
@@ -145,7 +145,6 @@ function waiting(meta){
       i++
       return line
     }
-
     if (dir === 0){
       if (i%l === l-1)  dir = 1
       return forward()
@@ -157,14 +156,8 @@ function waiting(meta){
   }
 
   let interval = setInterval(wait, 80)
-  
-  // let intTimer = 0
-
   meta.box.getElementsByClassName('chartHeader')[0].appendChild(waitSpan)
   function wait(){
-  // wait info 
-  // console.log( 'wait meta.wait', meta.wait)
-  // console.log( intTimer++)
     let bftxt = backForth()
     if (meta.wait){
       waitSpan.innerHTML = bftxt

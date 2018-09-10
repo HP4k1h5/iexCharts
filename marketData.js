@@ -1,7 +1,8 @@
 let mktDiv = document.createElement('div')
 mktDiv.setAttribute('class', 'market')
-mktDiv.id = 'market'
 document.getElementById('main').appendChild(mktDiv)
+let divTitle = document.createTextNode('Gainers/Losers')
+mktDiv.appendChild(divTitle)
 fetchMovers()
 setInterval(fetchMovers, 10000)
 
@@ -15,7 +16,11 @@ function fetchMovers(){
         res.json()
       ))
   ).then(r => {
-  mktDiv.childNodes.forEach(c => c.parentNode.removeChild(c))
+    let uls = mktDiv.getElementsByTagName('ul')
+    while (uls[0]){
+      uls[0].parentNode.removeChild(uls[0])
+    }
+  
     let ul = document.createElement('ul')
     r.forEach(o => { 
       o.forEach(p => {

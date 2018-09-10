@@ -1,7 +1,6 @@
 function fetchChart(meta){
   let data = getData(meta)
     .then(d => treatData(d, meta))
-    //.then(d => cleanDiv(d, meta.box))
     .then(d => makeCharts(d, meta))
     .then(m => getQuote(m))
     .then(q => treatQuote(q, meta))
@@ -41,18 +40,17 @@ function treatQuote(q, meta){
   }
 
   let qB = meta.box.getElementsByClassName('quote')
-  let hL = () => `h:${meta.high.toFixed(2)}\nl:${meta.low.toFixed(2)}`
+  let hL = () => `h:${meta.high.toFixed(2)}\nl:${meta.low.toFixed(2)}\no:${meta.open}\nc:${meta.close}`
   let hLT = document.createTextNode(hL())
   qB[0].appendChild(hLT)
+
   let ul = document.createElement('ul')
   Object.keys(vals).forEach(v => {
     let li = document.createElement('li')
     let txt = `${v} :: ${vals[v]}`
     let txtNode = document.createTextNode(txt)
     li.appendChild(txtNode)
-    if (v === 'change' 
-      || v === 'changePercent'
-    ){
+    if (v === 'change' || v === 'changePercent'){
       color(vals[v], li)
     }
     if (v === 'delayedPrice'){
@@ -84,7 +82,7 @@ function getData(meta){
       let txt = document.createTextNode('getData err: ' + err.message)
       span.appendChild(txt)
       meta.box.firstChild.nextSibling.appendChild(span)
-      console.error('fetch err: ', err)
+      console.error('getData err: ', err)
     })
 }
 
@@ -92,10 +90,11 @@ function treatData(data, meta){
   let valObj = {
     line: ['close', 'volume'],
     bars: ['close', 'volume'],
-    OHLC: ['open', 'high', 'low', 'close', 'volume'],
+    ohlc: ['open', 'high', 'low', 'close', 'volume'],
     hilo: ['low', 'high', 'volume']
   }
   if (typeof data === 'string' || ! data){
+    cleanDiv(null, meta.box)
     meta.wait = false
     let span = document.createElement('span')
     span.setAttribute('class', 'err') 
@@ -115,7 +114,6 @@ function treatData(data, meta){
       :: VALID types: #bars #line #hilo`
     )
     span.appendChild(txt)
-    //meta.box.insertBefore(span, meta.box.firstChild) 
     meta.box.insertBefore(span, meta.box.firstChild.nextSibling) 
     throw new Error('invalid chart type', meta.type)
   } 

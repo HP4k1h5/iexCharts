@@ -74,7 +74,6 @@ function makeSvg(vals, typ, priceVol, div){
       width: svgW / vals.length,
       height: 0,
       fill: 'red',
-    //  stroke: 'green',
       x: - svgW / vals.length,
       y: 0
     }
@@ -86,18 +85,15 @@ function makeSvg(vals, typ, priceVol, div){
       opts.height = svgH / pH * p
       opts.y = svgH - opts.height
       i > 0 && p >= a[i-1]
-        ? (//opts.stroke = 'green',
-          opts.fill = 'green'
-          )
-        : (//opts.stroke = 'red',
-          opts.fill = 'red'
-          )
+        ? opts.fill = 'green'
+        : opts.fill = 'red'
       Object.keys(opts).forEach(k => {
         rect.setAttributeNS(null, k, opts[k])
       })    
       svg.appendChild(rect)
     })
   } 
+
   typObj[typ](vals)
   return svg
 }

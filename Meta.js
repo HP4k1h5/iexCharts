@@ -2,7 +2,7 @@ const metaArr = []
 class Meta {
   constructor(sec, time, type){
     this.id = null
-    this.sec = sec || 'msft'
+    this.sec = sec || 'amzn'
     this.time = time || '1d'
     this.type = type || 'bars'
     this.url = null

@@ -57,7 +57,7 @@ function makeSvg(vals, typ, priceVol, div){
       let rect = document.createElementNS(ns, 'rect')
       opts.x += opts.width
       opts.height = (svgH / lH * p) - (svgH / lH *vals[0][i]) 
-      opts.y = svgH - (svgH - (svgH - svgH/lH * p ))
+      opts.y = svgH - (svgH - (svgH - svgH/pH * p ))
       i > 0 && p >= a[i-1]
         ? opts.fill = 'green'
         : opts.fill = 'red'

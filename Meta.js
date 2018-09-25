@@ -1,6 +1,6 @@
 const metaArr = []
 class Meta {
-  constructor(sec, time, type){
+  constructor(sec, time, type, width){
     this.id = null
     this.sec = sec || 'amzn'
     this.time = time || '1d'
@@ -11,7 +11,7 @@ class Meta {
     this.low = null
     this.wait = false
     this.size = {
-      width: '40%',
+      width: width || '40%',
       height: '60%'
     
     }

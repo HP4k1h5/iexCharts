@@ -1,29 +1,28 @@
-function createBox(sec, time, type){
-  let meta = new Meta(sec, time, type)
+function createBox(meta){
   meta.setId().makeUrl()
   makeBox(meta)
 }
 //initializes page with one chart box
-createBox()
+createBox(new Meta())
 
 function makeBox(meta){
   let box = document.createElement('div')
   box.id = meta.id 
   box.setAttribute('class', 'chartWindow')
+  box.style = `width: ${meta.size.width}`
   box.appendChild(makeTitle(meta))
   box.appendChild(makeQuoteDiv())
   box.getElementsByClassName('chartHeader')[0]
     .appendChild(makeInput(meta.id))
   document.getElementById('main').appendChild(box)
   meta.box = box
-  meta.box.style = `width: ${meta.size.width}`
   fetchChart(meta)
 }
 
 function reBox(meta){
   meta.box.style = `width: ${meta.size.width}`
   meta.makeUrl()
-  meta.box.getElementsByClassName('chartTitle')[0].textContent = `\$${meta.sec} : ${meta.time}`
+  meta.box.getElementsByClassName('chartTitle')[0].textContent = `\$${meta.sec}:${meta.time}`
   fetchChart(meta)
 }
 
@@ -60,7 +59,6 @@ function makeInput(id){
 
 function fetchNews(meta){
   cleanDiv(null, meta.box)
-  //meta.box.getElementsByClassName('chartTitle')[0].textContent = `\$${meta.sec} : ${meta.time}`
   let newsDiv = document.createElement('div')
   newsDiv.setAttribute('class', 'news')
   newsDiv.id = 'news'
@@ -82,7 +80,7 @@ function fetchNews(meta){
 function handleReq(val, id){
 let meta = metaArr.find(m => m.id === id)
 meta = /\bnew\b/.test(val)
-  ? new Meta(meta.sec, meta.time, meta.type)
+  ? new Meta(meta.sec, meta.time, meta.type, meta.size.width)
   : meta
 if (/\bclose\b/.test(val)){
   meta.deleteMe(meta)
@@ -104,7 +102,7 @@ if (/#\w+/.test(val)){
 }
 if (/\b(sm|lg)\b/.test(val)){
   let m =val.match(/\b(sm|lg)\b/)[0].toLowerCase()
-  meta.size.width = m === 'lg'
+  meta.size.width = (m === 'lg') 
     ? '80%'
     : '40%'
 }
@@ -118,6 +116,6 @@ if (/\//.test(val)){
 }
 
 /\bnew\b/.test(val) 
-  ? createBox(meta.sec, meta.time, meta.type)
+  ? createBox(meta)
   : reBox(meta)
 }

@@ -75,7 +75,7 @@ function  findDiff(term, txt){
       v = v < 2
         ? 10 - v
         : - v
-      return a+v
+      return a + v
     }, 0)
     let l = letters[0][1]['input']
     return [diff, l]
@@ -107,11 +107,18 @@ function showResults(rs, meta){
   div.setAttribute('class', 'results')
   let ul = document.createElement('ul')
   rs.forEach(res => {
+    let a = document.createElement('a')
+    a.setAttribute('class','searchResults')
+    a.onclick = function(){
+      meta.sec = res[2]
+      reBox(meta)
+    }
     let li = document.createElement('li')
     let txt = `${res[1]} : ${res[2]}`
     txt = document.createTextNode(txt)
     li.appendChild(txt)
-    ul.appendChild(li)
+    a.appendChild(li)
+    ul.appendChild(a)
   })
   div.appendChild(ul)
   meta.box.appendChild(div)

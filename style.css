@@ -110,6 +110,12 @@ a{
   color: green;
   text-decoration: none;
 }
+.searchResults{
+  color: gray;
+}
+.searchResults:hover{
+  text-decoration: underline;
+}
 
 div.news{
   max-width: 80%;

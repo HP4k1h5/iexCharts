@@ -115,8 +115,12 @@ a{
 }
 .searchResults:hover{
   text-decoration: underline;
+  cursor: pointer;
 }
-
+.movers:hover{
+  text-decoration: underline;
+  cursor: pointer;
+}
 div.news{
   max-width: 80%;
   max-height: 90%;

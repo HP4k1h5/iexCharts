@@ -24,6 +24,12 @@ function fetchMovers(){
     let ul = document.createElement('ul')
     r.forEach(o => { 
       o.forEach(p => {
+        let a = document.createElement('a')
+        a.setAttribute('class', 'movers')
+        a.onclick = function(){
+          let meta = new Meta(p.symbol)
+          createBox(meta)
+        }
         let li = document.createElement('li')
         let txt = `${p.symbol}: ${(p.changePercent*100).toFixed(2)}%`
         txt = document.createTextNode(txt)
@@ -31,7 +37,8 @@ function fetchMovers(){
         p.change >= 0 ? 
           li.setAttribute('class', 'green')
           : li.setAttribute('class', 'red')
-        ul.appendChild(li)
+        a.appendChild(li)
+        ul.appendChild(a)
       })
       mktDiv.appendChild(ul)
     })

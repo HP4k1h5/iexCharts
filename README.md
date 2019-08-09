@@ -1,3 +1,5 @@
+# iex has changed their api and this repo is no longer supported
+
 # iex API Charts
 ### stock chart terminals in the browser
 
